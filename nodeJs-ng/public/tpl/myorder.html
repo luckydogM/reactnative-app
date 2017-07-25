@@ -1,0 +1,32 @@
+<div ng-include="'tpl/include/header.html'"></div>
+
+
+<div class="container box">
+    <h1 style="text-align: center">我的订单</h1>
+    <table class="table table-hover col-xs-12" ng-if="status">
+       <thead>
+          <tr>
+              <th>编号</th>
+              <th>菜品</th>
+              <th>下单时间</th>
+              <th>联系人</th>
+          </tr>
+       </thead>
+        <tbody>
+            <tr ng-repeat="tmp in orderList" ng-click="toDetail(tmp.did)">
+                <td>{{tmp.oid}}</td>
+                <td><img ng-src="img/{{tmp.img_sm}}"></td>
+                <td>{{tmp.order_time | date:"yyyy-MM-dd hh:mm"}}</td>
+                <td>{{tmp.user_name}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="alert alert-info" ng-hide="status">暂时还没有您的订单哦，快去下单吧</div>
+</div>
+
+
+
+
+
+
+<div ng-include="'tpl/include/footer.html'"></div>

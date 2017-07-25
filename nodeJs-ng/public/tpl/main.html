@@ -1,0 +1,53 @@
+<div ng-include="'tpl/include/header.html'"></div>
+<div class="container box">
+    <div class="row" >
+        <div class="col-xs-12">
+            <div class="form-group has-feedback">
+                <input class="form-control" placeholder="搜索菜品名称和原料..." ng-keyup="search()" ng-model="inputText">
+                <span class="glyphicon glyphicon-search form-control-feedback"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <ul class="dish-list" ng-if="!listhide">
+                <li ng-repeat="tmp in list" ng-model="tmp.did" ng-click="toDetail(tmp.did)">
+                    <div class="media">
+                        <div class="media-left">
+                                <img class="media-object" ng-src="img/{{tmp.img_sm}}">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">{{tmp.name}}</h4>
+                            <p><b>主要食材：</b>{{tmp.material}}</p>
+                            <b>¥{{tmp.price}}</b>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+            <!--搜索列表-->
+            <ul class="dish-list" ng-if="hasSearch">
+                <li ng-repeat="tmp in searchList" ng-model="tmp.did" ng-click="toDetail(tmp.did)">
+                    <div class="media">
+                        <div class="media-left">
+                            <img class="media-object" ng-src="img/{{tmp.img_sm}}">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">{{tmp.name}}</h4>
+                            <p><b>主要食材：</b>{{tmp.material}}</p>
+                            <b>¥{{tmp.price}}</b>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <button class="btn-block btn btn-success"  ng-click="loadMore()" ng-if="sta" ng-hide="listhide">加载更多</button>
+    </div>
+    <div class="alert alert-danger" ng-hide="sta">
+        <span class="glyphicon glyphicon-warning-sign"></span>没有更多数据了
+    </div>
+</div>
+
+
+
+<div ng-include="'tpl/include/footer.html'"></div>

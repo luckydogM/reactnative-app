@@ -1,0 +1,43 @@
+<div ng-include="'tpl/include/header.html'"></div>
+
+<div class="container box">
+    <div class="row" ng-if="status">
+        <form class="col-xs-12" ng-submit="addOrder()" name="form" style="border: 1px solid #ddd;padding:25px">
+            <div class="form-group">
+                <label for="" class="control-label">联系人:</label>
+                <input type="text" class="form-control" required name="uname" ng-model="$parent.u_name">
+            </div>
+            <div class="form-group">
+                <label for="" class="control-label">性别:</label>
+                <input type="radio" name="gender"  value="1" ng-model="radio.choice">先生
+                <input type="radio" name="gender"  value="2" ng-model="radio.choice">女士
+            </div>
+            <div class="form-group">
+                <label for="" class="control-label">联系电话:</label>
+                <input type="tel" class="form-control" required name="tel" ng-model="$parent.u_tel">
+            </div>
+            <div class="form-group">
+                <label for="" class="control-label">送餐地址:</label>
+                <textarea class="form-control" rows="6" required name="address" ng-model="$parent.u_address"></textarea>
+            </div>
+            <button class="btn btn-success btn-block" ng-disabled="form.$invalid">确定下单</button>
+        </form>
+    </div>
+    <div class="alert alert-success" ng-hide="status">
+        订餐成功！您的订单编号为：<span>{{insertId}}</span>,您可在订单中心查看订单状态
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div ng-include="'tpl/include/footer.html'"></div>
