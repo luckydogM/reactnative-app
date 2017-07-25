@@ -1,0 +1,20 @@
+
+.mainBox{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+.mainBox>a{
+    text-decoration: none;
+    text-align: center;
+}
+
+.row,.col{
+    text-align: center;
+}
+.img-responsive{
+    display:inline-block;
+    max-width: 100%;
+    height: auto;
+}

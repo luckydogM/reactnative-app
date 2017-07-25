@@ -1,0 +1,46 @@
+<div ng-include="'tpl/include/header.html'"></div>
+
+<ion-content class="has-header has-footer">
+    <!--搜索框-->
+    <div class="list list-inset">
+        <label class="item item-input">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input type="text" placeholder="搜索菜名和原材料" ng-model="info.input">
+        </label>
+    </div>
+    <!--列表-缩略图-->
+    <div class="list list-inset" ng-hide="ifSearch">
+        <a class="item item-thumbnail-left" ng-click="jump('myDetail',{did:tmp.did})" ng-repeat="tmp in list">
+            <img ng-src="img/{{tmp.img_sm}}">
+            <h2>{{tmp.name}}</h2>
+            <p><b>主要食料：</b>{{tmp.material}}</p>
+            <p>{{tmp.price | currency:'¥'}}</p>
+        </a>
+    </div>
+
+    <div class="list list-inset" ng-show="ifSearch">
+        <a class="item item-thumbnail-left" ng-click="jump('myDetail',{did:tmp.did})" ng-repeat="tmp in searchText">
+            <img ng-src="img/{{tmp.img_sm}}">
+            <h2>{{tmp.name}}</h2>
+            <p><b>主要食料：</b>{{tmp.material}}</p>
+            <p>{{tmp.price | currency:'¥'}}</p>
+        </a>
+    </div>
+    <div class="list card" ng-hide="hasMore">
+        <p class="item item-icon-left assertive-bg">
+            <i class="icon ion-alert-circled"></i>
+           没有更多数据了
+        </p>
+    </div>
+    <div class="list card" ng-hide="hasSearch">
+        <p class="item item-icon-left assertive-bg">
+            <i class="icon ion-alert-circled"></i>
+            没有相关的菜品
+        </p>
+    </div>
+
+    <ion-infinite-scroll on-infinite="addMore()" ng-if="hasMore">
+    </ion-infinite-scroll>
+</ion-content>
+
+<ion-footer-bar ng-include="'tpl/include/footer.html'"></ion-footer-bar>
