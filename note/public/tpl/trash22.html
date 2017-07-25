@@ -1,0 +1,22 @@
+<div ng-include="'tpl/include/header.html'"></div>
+
+<ion-content class="has-footer has-header">
+    <img src="img/trash.png" width="50px">
+    <button ng-click="removeAll()" class="button button-clear button-dark">全部删除</button>
+    <div class="container">
+        <div class="col-xs-6" ng-repeat="note in trashList">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <input type="checkbox">
+                    <span>{{note.title}}</span>
+                    <span class="glyphicon glyphicon-remove pull-right" ng-click='remove(note.id)'></span>
+                    <span class="pull-right">{{note.updatatime|date:'yyyy-MM-dd hh:mm'}}</span>
+                    <a class="btn btn-info pull-right" ng-click="renew(note.id)">恢复</a>
+                </div>
+                <div class="panel-body">{{note.content}}</div>
+            </div>
+        </div>
+    </div>
+</ion-content>
+
+<div ng-include="'tpl/include/footer.html'"></div>

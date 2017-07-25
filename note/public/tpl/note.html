@@ -1,0 +1,22 @@
+<div ng-include="'tpl/include/header.html'"></div>
+
+<div class="has-header has-footer">
+    <button ng-click="addNote()" class="button button-dark">创建便签</button>
+    <div id="container" style="height:80%">
+        <div class="note" ng-repeat="tmp in noteList track by $index" id="{{tmp.id}}" style="left:{{tmp.nleft+'px'}};top:{{tmp.ntop+'px'}};z-index:{{tmp.nzindex}};background-color:{{tmp.color}}" ng-drag ng-click="acceptId(tmp.id,$index)">
+            <i class="close" ng-click="delete($index,tmp.id)"></i>
+            <div class="note-title" contenteditable="true"  ng-inputend call-back="updateTitle" ng-model="noteList[$index].title">{{noteList[$index].title}}</div>
+            <div class="edite" contenteditable="true" ng-inputend call-back="updateContent" ng-model="noteList[$index].content">{{noteList[$index].content}}</div>
+            <div class="note-time">
+                <div class="deadline">提醒时间：</div>
+                <input type="datetime-local" class="finish-time" value="{{tmp.timer | date:'yyyy-MM-ddThh:mm'}}" ng-model="input.timer" ng-inputend call-back="updateTimer">
+                <div class="create-time">
+                    <span>更新时间:</span>
+                    <span class="time">{{tmp.updatatime | date:'yyyy-MM-dd hh:mm'}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <img src="img/trash.png" width="50px">
+</div>
+<div ng-include="'tpl/include/footer.html'"></div>
